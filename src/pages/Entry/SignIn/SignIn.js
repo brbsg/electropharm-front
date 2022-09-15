@@ -1,10 +1,16 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { useUser } from "../../../contexts/UserContext";
 import api from "../../../services/api";
 
 export default function SignIn({ setPage, toast }) {
   const navigate = useNavigate();
+
+  const {
+    user: { token },
+    persistUser,
+  } = useUser();
 
   const [formData, setFormData] = useState({
     email: "",
@@ -18,9 +24,12 @@ export default function SignIn({ setPage, toast }) {
       return toast("Todos os campos devem ser preenchidos!");
     }
 
+    const checkToken = await api.checkToken(token);
+
     try {
       const res = await api.SignIn(formData);
 
+      persistUser(res.data);
       console.log(res.data);
 
       navigate("/main");

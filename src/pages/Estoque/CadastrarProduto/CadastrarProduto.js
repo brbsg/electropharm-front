@@ -2,11 +2,17 @@ import React, { useState } from "react";
 
 import { FaArrowAltCircleLeft } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { useUser } from "../../../contexts/UserContext";
 import api from "../../../services/api";
 import "./CadastrarProduto.css";
 
+import { toast, ToastContainer } from "react-toastify";
+
 export default function CadastrarProduto() {
   const navigate = useNavigate();
+  const {
+    user: { token },
+  } = useUser();
 
   const [formData, setFormData] = useState({
     name: "",
@@ -41,20 +47,21 @@ export default function CadastrarProduto() {
   async function handleSubmit(event) {
     event.preventDefault();
 
-    console.log(formData);
-
     try {
-      const res = await api.createDrug(formData);
+      const res = await api.createDrug(formData, token);
 
-      navigate("/");
       console.log(res.data);
+      navigate("/estoque");
     } catch (error) {
       console.log(error);
+      toast("Não foi possível cadastrar o produto.");
     }
   }
 
   return (
     <>
+      <ToastContainer />
+
       <div className="content">
         <main>
           <div className="electron-back">
