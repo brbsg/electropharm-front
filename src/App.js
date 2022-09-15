@@ -15,13 +15,11 @@ function App() {
   const [showPage, setShowPage] = useState(false);
 
   const navigate = useNavigate();
-  const {
-    user: { token },
-  } = useUser();
+  const { user } = useUser();
 
   async function fetchData() {
     try {
-      await api.checkToken(token);
+      await api.checkToken(user?.token);
 
       setShowPage(true);
     } catch (error) {
@@ -31,9 +29,7 @@ function App() {
   }
 
   useEffect(() => {
-    if (token) {
-      fetchData();
-    }
+    fetchData();
   }, []);
 
   if (!showPage) {
