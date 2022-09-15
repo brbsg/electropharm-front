@@ -66,7 +66,11 @@ export default function CadastrarProduto() {
         <main>
           <div className="electron-back">
             <div href="#" className="titulo-page">
-              <FaArrowAltCircleLeft className="icon-back" />
+              <FaArrowAltCircleLeft
+                style={{ cursor: "pointer" }}
+                className="icon-back"
+                onClick={() => navigate("/estoque")}
+              />
               CADASTRAR PRODUTO
             </div>
 
@@ -196,10 +200,19 @@ export default function CadastrarProduto() {
               </div>
 
               <div className="outline-button">
-                <button className="cadastrar-produto-button" type="submit">
+                <button
+                  style={{ cursor: "pointer" }}
+                  className="cadastrar-produto-button"
+                  type="submit"
+                >
                   Cadastrar Produto
                 </button>
-                <button className="cancelar-button">Cancelar</button>
+                <button
+                  style={{ cursor: "pointer" }}
+                  className="cancelar-button"
+                >
+                  Cancelar
+                </button>
               </div>
             </form>
           </div>

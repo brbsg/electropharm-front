@@ -127,7 +127,7 @@
   width: 100%;
   justify-content: space-between;
   align-items: center;
-  margin-left: 100px;
+  margin: 0;
 }
 
 .box {
@@ -189,7 +189,6 @@ body {
   color: #14c38e;
   height: 50px;
   width: 200px;
-  margin-right: 20px;
   background-color: black;
 
   cursor: pointer;
@@ -197,7 +196,10 @@ body {
 
 main {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin: 20px 100px;
+  gap: 50px;
 }
 @media screen and (max-width: 425px) {
   .search_box {

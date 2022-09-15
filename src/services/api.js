@@ -13,6 +13,24 @@ function createDrug(body, token) {
   return axios.post(`${BASE_URL}/drugs`, body, headerAuth);
 }
 
+function deleteDrug(id, token) {
+  const headerAuth = createBearerToken(token);
+
+  return axios.delete(`${BASE_URL}/drugs/${id}`, headerAuth);
+}
+
+function updateDrug(id, body, token) {
+  const headerAuth = createBearerToken(token);
+
+  return axios.put(`${BASE_URL}/drugs/${id}`, body, headerAuth);
+}
+
+function getOneDrug(id, token) {
+  const headerAuth = createBearerToken(token);
+
+  return axios.get(`${BASE_URL}/drugs/${id}`, headerAuth);
+}
+
 function getAllDrugs(token) {
   const headerAuth = createBearerToken(token);
 
@@ -33,4 +51,13 @@ function checkToken(token) {
   return axios.get(`${BASE_URL}/auth/check-token`, headerAuth);
 }
 
-export default { createDrug, getAllDrugs, SignUp, SignIn, checkToken };
+export default {
+  createDrug,
+  deleteDrug,
+  updateDrug,
+  getOneDrug,
+  getAllDrugs,
+  SignUp,
+  SignIn,
+  checkToken,
+};
