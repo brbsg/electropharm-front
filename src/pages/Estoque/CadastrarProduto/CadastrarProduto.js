@@ -47,6 +47,10 @@ export default function CadastrarProduto() {
   async function handleSubmit(event) {
     event.preventDefault();
 
+    if (formData.purchasePrice > formData.salePrice) {
+      return toast("Preço de compra deve ser menor que o de venda!");
+    }
+
     try {
       const res = await api.createDrug(formData, token);
 
